@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 
 class UserIsAdmin
@@ -13,14 +14,16 @@ class UserIsAdmin
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle(Request $request, Closure $next): Response
+    public function handle(Request $request, Closure $next): JsonResponse
     {
+        $user = $request->user();
+
         if (
-            $request->user()->is_admin == false
-            || empty($request->user)
+            $user->is_admin == false
+            || empty($user)
         ) {
-            return \response('Usuário não tem permissão!', Response::HTTP_FORBIDDEN);
-        }
+            return new JsonResponse('Usuário não tem permissão!', Response::HTTP_FORBIDDEN);
+        };
 
         return $next($request);
     }

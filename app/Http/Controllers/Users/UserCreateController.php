@@ -16,7 +16,10 @@ class UserCreateController
             'email' => ['required', 'email'],
             // 'school' => ['required', 'string'],
             'password' => ['required'],
+            'is_admin' => ['boolean'],
         ]);
+
+        $requestValidated['is_admin'] = $requestValidated['is_admin'] ?? false;
 
         User::createOrFirst($requestValidated);
 

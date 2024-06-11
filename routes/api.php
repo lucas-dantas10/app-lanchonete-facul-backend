@@ -12,11 +12,15 @@ Route::prefix('/v1')->group(function () {
 
     // USUARIO ADMIN E LOGADO
     Route::middleware([UserIsAdmin::class, 'auth:sanctum'])->group(function () {
-       Route::post('/teste');
+       Route::post('/testando', function () {
+           dd('logado e admin');
+       })->name('teste.admin');
     });
 
     // USUARIO COMUM E LOGADO
     Route::middleware('auth:sanctum')->group(function () {
-        Route::post('/teste');
+        Route::post('/teste', function () {
+            dd('logado e nao admin');
+        })->name('teste.notadmin');
     });
 });
