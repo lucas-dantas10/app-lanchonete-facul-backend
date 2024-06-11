@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class ItemCart extends Model
 {
@@ -25,8 +26,8 @@ class ItemCart extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function product(): HasMany
+    public function product(): HasOne
     {
-        return $this->hasMany(Product::class, 'id');
+        return $this->hasOne(Product::class, 'id');
     }
 }
