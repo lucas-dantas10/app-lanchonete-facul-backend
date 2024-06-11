@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Carts;
 
 use App\Models\ItemCart;
+use App\Models\Product;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
@@ -16,11 +17,20 @@ class CartItemsCreateController
             "price_unit" => ["required", "numeric"],
         ]);
 
+        $product = Product::where("id", $requestValidated["product_id"])->first();
+
+        if (empty($product)) {
+            return new JsonResponse([
+                "message" => "Este produto não existe!",
+                "status" => JsonResponse::HTTP_BAD_REQUEST,
+            ], JsonResponse::HTTP_BAD_REQUEST);
+        }
+
         $cartItem = ItemCart::where("product_id", $requestValidated['product_id'])
             ->where('user_id', auth()->id())
             ->first();
 
-        if (empty($cartItem)) {
+        if (!empty($cartItem)) {
             return new JsonResponse([
                 "message" => "Já possui este item no carrinho!",
                 "status" => JsonResponse::HTTP_BAD_REQUEST,
