@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\Authentication\LoginController;
+use App\Http\Controllers\Carts\CartItemsListController;
 use App\Http\Controllers\Orders\OrdersListController;
+use App\Http\Controllers\Products\ProductListController;
 use App\Http\Controllers\Users\UserCreateController;
 use Illuminate\Support\Facades\Route;
 use \App\Http\Middleware\UserIsAdmin;
@@ -17,8 +19,7 @@ Route::prefix('/v1')->group(function () {
 
     // USUARIO COMUM E LOGADO
     Route::middleware('auth:sanctum')->group(function () {
-        Route::post('/teste', function () {
-            dd('logado e nao admin');
-        })->name('teste.notadmin');
+        Route::get('/products', ProductListController::class)->name('products.get');
+        Route::get('/cart/items', CartItemsListController::class)->name('carts.get');
     });
 });

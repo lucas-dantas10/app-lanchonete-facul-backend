@@ -1,28 +1,26 @@
 <?php
 
-namespace App\Http\Controllers\Orders;
+namespace App\Http\Controllers\Products;
 
-use App\Models\Order;
+use App\Models\Product;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
-class OrdersListController
+class ProductListController
 {
     public function __invoke(Request $request): JsonResponse
     {
-        $orders = Order::with('user')
-            ->orderBy('id','desc')
-            ->get();
+        $products = Product::orderBy("id","desc")->get();
 
-        if ($orders->isEmpty()) {
+        if ($products->isEmpty()) {
             return new JsonResponse([
-                'message' => 'Não possui nenhum pedido',
+                'message' => 'Não possui lanches!',
                 'status' => JsonResponse::HTTP_OK,
             ], JsonResponse::HTTP_OK);
         }
 
         return new JsonResponse([
-            'orders' => $orders,
+            'products' => $products,
             'status' => JsonResponse::HTTP_OK,
         ], JsonResponse::HTTP_OK);
     }
