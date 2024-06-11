@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\ItemCart;
+use App\Models\Product;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -20,5 +22,9 @@ class DatabaseSeeder extends Seeder
             'email' => 'test@example.com',
             'is_admin' => true,
         ]);
+
+        Product::factory()->create();
+
+        ItemCart::factory()->create()->count(3);
     }
 }

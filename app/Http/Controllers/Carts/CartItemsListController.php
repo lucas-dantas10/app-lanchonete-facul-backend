@@ -10,7 +10,7 @@ class CartItemsListController
 {
     public function __invoke(Request $request): JsonResponse
     {
-        $cartItems = ItemCart::with(["user", "product"])->get();
+        $cartItems = ItemCart::with("product")->get();
 
         if ($cartItems->isEmpty()) {
             return new JsonResponse([

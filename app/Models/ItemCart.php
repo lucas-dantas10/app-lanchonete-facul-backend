@@ -27,6 +27,6 @@ class ItemCart extends Model
 
     public function product(): HasMany
     {
-        return $this->hasMany(Product::class);
+        return $this->hasMany(Product::class, 'id');
     }
 }

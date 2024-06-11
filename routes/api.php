@@ -21,5 +21,6 @@ Route::prefix('/v1')->group(function () {
     Route::middleware('auth:sanctum')->group(function () {
         Route::get('/products', ProductListController::class)->name('products.get');
         Route::get('/cart/items', CartItemsListController::class)->name('carts.get');
+        Route::get('/cart/create', CartItemsListController::class)->name('carts.create');
     });
 });
