@@ -10,12 +10,9 @@ class OrdersListController
 {
     public function __invoke(Request $request): JsonResponse
     {
-        $user = $request->user();
+        $orders = Order::with('user')->get();
 
-        $orders = Order::where("user_id", $user->id)
-            ->paginate(10);
-
-        if (empty($orders->items())) {
+        if ($orders->isEmpty()) {
             return new JsonResponse([
                 'message' => 'Não possui nenhum pedido',
                 'status' => JsonResponse::HTTP_OK,
