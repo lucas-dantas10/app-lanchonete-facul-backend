@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Authentication\LoginController;
 use App\Http\Controllers\Carts\CartItemsCreateController;
+use App\Http\Controllers\Carts\CartItemsDeleteController;
 use App\Http\Controllers\Carts\CartItemsListController;
 use App\Http\Controllers\Orders\OrdersListController;
 use App\Http\Controllers\Products\ProductListController;
@@ -23,5 +24,6 @@ Route::prefix('/v1')->group(function () {
         Route::get('/products', ProductListController::class)->name('products.get');
         Route::get('/cart/items', CartItemsListController::class)->name('carts.get');
         Route::post('/cart/create', CartItemsCreateController::class)->name('carts.create');
+        Route::delete('/cart/delete/{id}', CartItemsDeleteController::class)->name('carts.delete');
     });
 });
