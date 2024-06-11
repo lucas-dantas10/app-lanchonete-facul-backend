@@ -1,8 +1,8 @@
 <?php
 
 use App\Http\Controllers\Authentication\LoginController;
+use App\Http\Controllers\Orders\OrdersListController;
 use App\Http\Controllers\Users\UserCreateController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use \App\Http\Middleware\UserIsAdmin;
 
@@ -12,9 +12,7 @@ Route::prefix('/v1')->group(function () {
 
     // USUARIO ADMIN E LOGADO
     Route::middleware([UserIsAdmin::class, 'auth:sanctum'])->group(function () {
-       Route::post('/testando', function () {
-           dd('logado e admin');
-       })->name('teste.admin');
+       Route::get('/orders', OrdersListController::class)->name('orders.get');
     });
 
     // USUARIO COMUM E LOGADO
