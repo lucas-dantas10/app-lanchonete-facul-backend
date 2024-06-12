@@ -23,6 +23,12 @@ class DatabaseSeeder extends Seeder
             'is_admin' => true,
         ]);
 
+        User::factory()->create([
+            'name' => 'Lucas',
+            'email' => 'lucas@example.com',
+            'is_admin' => false,
+        ]);
+
         Product::factory()->count(3)->create();
     }
 }
