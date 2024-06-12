@@ -13,6 +13,7 @@ class OrdersListController
     {
         $orders = Order::query()
             ->with(["user", "itemOrder.product"])
+            ->orderBy("token_order","asc")
             ->get();
 
         if ($orders->isEmpty()) {

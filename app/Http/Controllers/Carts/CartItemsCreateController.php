@@ -14,7 +14,6 @@ class CartItemsCreateController
         $requestValidated = $request->validate([
             "product_id"=> ["required", "numeric"],
             "quantity" => ["required", "numeric"],
-            "price_unit" => ["required", "numeric"],
         ]);
 
         $product = Product::where("id", $requestValidated["product_id"])->first();
@@ -38,6 +37,7 @@ class CartItemsCreateController
         }
 
         $requestValidated["user_id"] = auth()->id();
+        $requestValidated["price_unit"] = $product->price;
 
         $cartItem = ItemCart::create($requestValidated);
 

@@ -25,6 +25,7 @@ class OrdersCreateController
                 "total_price" => $totalPrice,
                 "status_order" => StatusOrder::NOT_PAID->value,
             ];
+            $order = Order::where('user_id', auth()->id())->first();
             $cartItems = ItemCart::where("user_id", auth()->id())
                 ->with('product')
                 ->get();
@@ -44,7 +45,9 @@ class OrdersCreateController
 
             $orderData['total_price'] = $totalPrice;
 
-            $order = Order::create($orderData);
+            if (empty($order)) {
+                $order = Order::create($orderData);
+            }
 
             foreach ($cartItems as $cartItem) {
                 $orderItemData = [
