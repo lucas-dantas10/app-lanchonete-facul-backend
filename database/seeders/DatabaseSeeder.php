@@ -23,8 +23,6 @@ class DatabaseSeeder extends Seeder
             'is_admin' => true,
         ]);
 
-        Product::factory()->create();
-
-        ItemCart::factory()->create();
+        Product::factory()->count(3)->create();
     }
 }

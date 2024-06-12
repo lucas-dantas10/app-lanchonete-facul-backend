@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Orders;
 
+use App\Models\ItemOrder;
 use App\Models\Order;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -10,8 +11,8 @@ class OrdersListController
 {
     public function __invoke(Request $request): JsonResponse
     {
-        $orders = Order::with('user')
-            ->orderBy('id','desc')
+        $orders = Order::query()
+            ->with(["user", "itemOrder.product"])
             ->get();
 
         if ($orders->isEmpty()) {

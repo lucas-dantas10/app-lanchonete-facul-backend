@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Authentication\LoginController;
+use App\Http\Controllers\Authentication\LogoutController;
 use App\Http\Controllers\Carts\CartItemsCreateController;
 use App\Http\Controllers\Carts\CartItemsDeleteController;
 use App\Http\Controllers\Carts\CartItemsListController;
@@ -29,5 +30,7 @@ Route::prefix('/v1')->group(function () {
         Route::delete('/cart/delete/{id}', CartItemsDeleteController::class)->name('carts.delete');
 
         Route::post('/orders/create', OrdersCreateController::class)->name('orders.post');
+
+        Route::post('/logout', LogoutController::class)->name('logout.post');
     });
 });
