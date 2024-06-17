@@ -21,9 +21,10 @@ class UserCreateController
 
         $requestValidated['is_admin'] = $requestValidated['is_admin'] ?? false;
 
-        User::createOrFirst($requestValidated);
+        $user = User::createOrFirst($requestValidated);
 
         return new JsonResponse([
+            'user' => $user,
             'message' => 'Conta criada com sucesso',
         ]);
     }
