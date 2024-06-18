@@ -5,6 +5,7 @@ use App\Http\Controllers\Authentication\LogoutController;
 use App\Http\Controllers\Carts\CartItemsCreateController;
 use App\Http\Controllers\Carts\CartItemsDeleteController;
 use App\Http\Controllers\Carts\CartItemsListController;
+use App\Http\Controllers\Orders\OrdersClientListController;
 use App\Http\Controllers\Orders\OrdersCreateController;
 use App\Http\Controllers\Orders\OrdersListController;
 use App\Http\Controllers\Orders\OrdersStatusController;
@@ -32,6 +33,7 @@ Route::prefix('/v1')->group(function () {
 
         Route::post('/orders/create', OrdersCreateController::class)->name('orders.post');
         Route::put('/orders/status/{id}', OrdersStatusController::class)->name('orders.put');
+        Route::get('/orders/client', OrdersClientListController::class)->name('orders.client.get');
 
         Route::post('/logout', LogoutController::class)->name('logout.post');
     });

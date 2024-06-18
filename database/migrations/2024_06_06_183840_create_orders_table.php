@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreignIdFor(User::class, 'user_id')->index()->constrained();
             $table->string('token_order');
             $table->decimal('total_price');
-            $table->enum('status_order', ['F', 'C'])->nullable();
+            $table->enum('status_order', ['D', 'C', 'E'])->nullable();
             $table->timestamps();
         });
     }
