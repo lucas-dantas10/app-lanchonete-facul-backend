@@ -23,7 +23,6 @@ class OrdersCreateController
                 "user_id" => auth()->id(),
                 "token_order" => strtoupper(str()->random(5)),
                 "total_price" => $totalPrice,
-                "status_order" => StatusOrder::NOT_PAID->value,
             ];
             $order = Order::where('user_id', auth()->id())->first();
             $cartItems = ItemCart::where("user_id", auth()->id())

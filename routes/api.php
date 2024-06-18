@@ -7,6 +7,7 @@ use App\Http\Controllers\Carts\CartItemsDeleteController;
 use App\Http\Controllers\Carts\CartItemsListController;
 use App\Http\Controllers\Orders\OrdersCreateController;
 use App\Http\Controllers\Orders\OrdersListController;
+use App\Http\Controllers\Orders\OrdersStatusController;
 use App\Http\Controllers\Products\ProductListController;
 use App\Http\Controllers\Users\UserCreateController;
 use Illuminate\Support\Facades\Route;
@@ -30,6 +31,7 @@ Route::prefix('/v1')->group(function () {
         Route::delete('/cart/delete/{id}', CartItemsDeleteController::class)->name('carts.delete');
 
         Route::post('/orders/create', OrdersCreateController::class)->name('orders.post');
+        Route::put('/orders/status/{id}', OrdersStatusController::class)->name('orders.put');
 
         Route::post('/logout', LogoutController::class)->name('logout.post');
     });
