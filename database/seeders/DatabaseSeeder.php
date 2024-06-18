@@ -16,10 +16,10 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         User::factory()->create([
-            'name' => 'test',
-            'email' => 'test@example.com',
+            'name' => 'admin',
+            'email' => 'admin@example.com',
             'is_admin' => true,
-            'school' => 'Escola teste'
+            'school' => 'Admin'
         ]);
 
         User::factory()->create([
@@ -54,7 +54,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'Combo',
             'description'=>'Salgado + Suco ',
             'price' => 9.00,
-            'image_path' => 'http://localhost:8000/storage/products/combo.png',
+            'image_path' => 'http://localhost:8000/storage/products/combo.jpg',
 
         ]);
         Product::factory()->create([
@@ -68,28 +68,28 @@ class DatabaseSeeder extends Seeder
             'name' => 'sacole',
             'description'=>'Sacole de diversos sabores',
             'price' => 5.00,
-            'image_path' => 'http://localhost:8000/storage/products/aguaC.png',
+            'image_path' => 'http://localhost:8000/storage/products/sacole.png',
 
         ]);
         Product::factory()->create([
             'name' => 'Água ',
             'description'=>'Aguá Normal',
             'price' => 3.00,
-            'image_path' => 'http://localhost:8000/storage/products/aguaC.png',
+            'image_path' => 'http://localhost:8000/storage/products/aguaS.png',
 
         ]);
         Product::factory()->create([
             'name' => 'Pipoca',
             'description'=>'Pipoca salgada',
             'price' => 4.00,
-            'image_path' => 'http://localhost:8000/storage/products/aguaC.png',
+            'image_path' => 'http://localhost:8000/storage/products/pipoca.png',
 
         ]);
         Product::factory()->create([
             'name' => 'Biscoito de Polvilho',
             'description'=>'Biscoito de Polvilho Salgado',
             'price' => 3.00,
-            'image_path' => 'http://localhost:8000/storage/products/aguaC.png',
+            'image_path' => 'http://localhost:8000/storage/products/polvilho.png',
 
         ]);
         

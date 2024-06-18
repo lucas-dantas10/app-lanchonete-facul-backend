@@ -24,7 +24,9 @@ class OrdersCreateController
                 "token_order" => strtoupper(str()->random(5)),
                 "total_price" => $totalPrice,
             ];
-            $order = Order::where('user_id', auth()->id())->first();
+            $order = Order::where('user_id', auth()->id())
+                ->where('status_order', 'is not', StatusOrder::ENCERRED->value)
+                ->first();
             $cartItems = ItemCart::where("user_id", auth()->id())
                 ->with('product')
                 ->get();
