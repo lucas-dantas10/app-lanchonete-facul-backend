@@ -41,8 +41,13 @@ class CartItemsCreateController
 
         $cartItem = ItemCart::create($requestValidated);
 
+        $cartItems = ItemCart::with("product")
+            ->where('user_id', auth()->id())
+            ->get();
+
         return new JsonResponse([
             "message" => "Item adicionado ao carrinho!",
+            "cart_item" => $cartItems,
             "status" => JsonResponse::HTTP_CREATED,
         ], JsonResponse::HTTP_CREATED);
     }

@@ -60,6 +60,8 @@ class OrdersCreateController
                 ItemOrder::create($orderItemData);
             }
 
+            ItemCart::where("user_id", auth()->id())->delete();
+
             DB::commit();
         } catch (\Exception $exception) {
             DB::rollBack();
