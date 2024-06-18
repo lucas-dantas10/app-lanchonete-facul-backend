@@ -10,7 +10,7 @@ class ProductListController
 {
     public function __invoke(Request $request): JsonResponse
     {
-        $products = Product::orderBy("id","desc")->get();
+        $products = Product::orderBy("id","asc")->get();
 
         if ($products->isEmpty()) {
             return new JsonResponse([
