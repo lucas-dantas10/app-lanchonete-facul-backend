@@ -11,6 +11,7 @@ use App\Http\Controllers\Orders\OrdersListController;
 use App\Http\Controllers\Orders\OrdersStatusController;
 use App\Http\Controllers\Products\ProductListController;
 use App\Http\Controllers\Users\UserCreateController;
+use App\Http\Controllers\Users\UserImageController;
 use Illuminate\Support\Facades\Route;
 use \App\Http\Middleware\UserIsAdmin;
 
@@ -34,6 +35,8 @@ Route::prefix('/v1')->group(function () {
         Route::post('/orders/create', OrdersCreateController::class)->name('orders.post');
         Route::put('/orders/status/{id}', OrdersStatusController::class)->name('orders.put');
         Route::get('/orders/client', OrdersClientListController::class)->name('orders.client.get');
+
+        Route::post('/user/upload-image', UserImageController::class)->name('users.image.post');
 
         Route::post('/logout', LogoutController::class)->name('logout.post');
     });
